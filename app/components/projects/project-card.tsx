@@ -8,7 +8,7 @@ export function ProjectCard({ slug, title, description, image, category }: Proje
   return (
     <Link href={`/projects/${slug}`}>
       <Card className="overflow-hidden transition-shadow hover:shadow-lg">
-        <div className="relative h-48">
+        <div className="relative h-60">
           <Image src={image || "/placeholder.svg"} alt={title} fill className="object-cover" />
         </div>
         <CardContent className="p-4">

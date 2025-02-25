@@ -9,31 +9,24 @@ export default function AboutSection() {
         <div className="flex flex-col">
           <div>
             <p className="mb-4">
-              I'm an architect specializing in computational design and sustainable architecture. My work spans from
-              complex infrastructure projects like the Richmond Regen water treatment facility to detailed commercial
-              renovations such as the Wentworth Hotel Mezzanine. Each project demonstrates my commitment to integrating
-              innovative design with practical functionality.
+            I'm an architectural designer that strives to bridge traditional architectural principles with computational innovation, exploring the rich territory where technical precision meets creative expression. My approach is grounded in systematic problem-solving while remaining open to cultural influences and unexpected connections that enrich the design process.
             </p>
             <p className="mb-4">
-              My practice is enriched by diverse interests including parametric design, architectural photography, and
-              technical documentation. I use tools like Grasshopper for computational design, drawing inspiration from
-              geometric patterns observed during my travels in India. This multidisciplinary approach allows me to
-              create unique solutions that bridge the gap between traditional architectural principles and contemporary
-              design methods.
+            My practice is guided by a belief that thoughtful architecture emerges from the balance between technical rigor and human experience. Whether working with parametric tools or traditional documentation, I see each design challenge as an opportunity to create spaces that are not only functional and structurally sound, but also meaningful and responsive to their context.
             </p>
           </div>
-          <div className="mt-8">
+          <div className="mt-8 grid grid-cols-2 gap-4"> {/* Added grid layout */}
             <Image
-              src="/images/profile-photo.jpg"
+              src="/images/profile_image.jpg"
               alt="Profile"
               width={300}
               height={300}
               className="rounded-lg object-cover"
             />
+            <div className="relative aspect-square">
+              <SingleMorphingShape />
+            </div>
           </div>
-        </div>
-        <div className="relative aspect-square">
-          <SingleMorphingShape />
         </div>
       </div>
     </section>

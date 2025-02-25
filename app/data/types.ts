@@ -4,6 +4,7 @@ export const projectCategories = [
   "Research & Concept Projects",
   "Technical Documentation",
   "Creative Practice",
+  "BIM",
 ] as const
 
 export type ProjectCategory = (typeof projectCategories)[number]

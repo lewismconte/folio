@@ -4,8 +4,8 @@ export const projects: Project[] = [
   {
     slug: "richmond-regen",
     title: "Richmond Regen",
-    description: "Transforming water treatment infrastructure into an ecological parkland.",
-    image: "/images/richmond-regen.jpg",
+    description: "Created for Studio 5:Temples of the Periphery during my bachelors at UTS. Transforming water treatment infrastructure into an ecological parkland.",
+    image: "/images/Richmond_Model_Aerial.jpg",
     category: "Built Projects & Professional Work",
     sections: [
       {
@@ -47,9 +47,9 @@ export const projects: Project[] = [
   },
   {
     slug: "wentworth-hotel-mezzanine",
-    title: "Wentworth Hotel Mezzanine",
-    description: "Sophisticated renovation featuring a copper canopy and grid shell structure.",
-    image: "/images/wentworth-hotel.jpg",
+    title: "Wentworth Hotel Level 5 Canopy",
+    description: "A technical renovation featuring an aircraft wing like radiating copper canopy to protect patrons from the elements.",
+    image: "/images/Wentworth_Aerial.jpg",
     category: "Built Projects & Professional Work",
     sections: [
       {
@@ -71,8 +71,9 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        src: "/images/wentworth-hotel-interior.jpg",
+        src: "/images/Wentworth_Wide.jpg",
         alt: "Wentworth Hotel Interior",
+        fullWidth: true
       },
       {
         type: "text",
@@ -93,7 +94,7 @@ export const projects: Project[] = [
     slug: "condell-park-office",
     title: "Condell Park Office",
     description: "Industrial building transformation with innovative design elements.",
-    image: "/images/condell-park-office.jpg",
+    image: "/images/Condell_Hori_01.jpg",
     category: "Built Projects & Professional Work",
     sections: [
       {
@@ -105,7 +106,7 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        src: "/images/condell-park-office-exterior.jpg",
+        src: "/images/Condell_Ext_Hori.jpg",
         alt: "Condell Park Office Exterior",
       },
       {
@@ -115,7 +116,7 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        src: "/images/condell-park-office-interior.jpg",
+        src: "/images/Condell_Int01.jpg",
         alt: "Condell Park Office Interior",
       },
       {
@@ -137,7 +138,7 @@ export const projects: Project[] = [
     slug: "parametric-design-studies",
     title: "Parametric Design Studies",
     description: "Computational design experiments inspired by Indian architecture.",
-    image: "/images/parametric-design.jpg",
+    image: "/images/para02.png",
     category: "Computational Design",
     sections: [
       {
@@ -181,7 +182,7 @@ export const projects: Project[] = [
     slug: "architectural-photography",
     title: "Architectural Photography",
     description: "Photographic exploration of architectural monuments in North India.",
-    image: "/images/architectural-photography.jpg",
+    image: "/images/raja01_1920x1273.jpg",
     category: "Creative Practice",
     sections: [
       {
@@ -225,7 +226,7 @@ export const projects: Project[] = [
     slug: "technical-documentation",
     title: "Technical Documentation",
     description: "Detailed architectural drawings for Project Remediate.",
-    image: "/images/technical-documentation.jpg",
+    image: "/images/dwg.png",
     category: "Technical Documentation",
     sections: [
       {

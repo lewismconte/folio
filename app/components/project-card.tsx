@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import type { Project } from "../projects"
+import type { projects } from "../projects"
 
 export function ProjectCard({ slug, title, description, image, category }: Project) {
   return (
