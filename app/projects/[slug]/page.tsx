@@ -7,12 +7,66 @@ import { ChevronLeft } from "lucide-react"
 import Header from "@/app/components/layout/header"
 import PageContainer from "@/app/components/layout/page-container"
 import { projects } from "@/app/projects"
+import { cn } from "@/lib/utils"
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug)
 
   if (!project) {
     notFound()
+  }
+
+  // Helper function for object fit classes
+  const getObjectFitClass = (objectFit?: string) => {
+    switch (objectFit) {
+      case "contain": return "object-contain"
+      case "fill": return "object-fill"
+      case "none": return "object-none"
+      default: return "object-cover"
+    }
+  }
+
+  // Helper function for margin classes
+  const getMarginClass = (margin?: string) => {
+    switch (margin) {
+      case "small": return "my-2"
+      case "medium": return "my-4"
+      case "large": return "my-8"
+      default: return ""
+    }
+  }
+
+  // Helper function for height classes
+  const getHeightClass = (height?: string, customHeight?: string) => {
+    if (height === "custom" && customHeight) {
+      return customHeight
+    }
+    
+    switch (height) {
+      case "small": return "h-40 md:h-64"
+      case "large": return "h-96 md:h-[32rem]"
+      default: return "h-64 md:h-96" // medium is default
+    }
+  }
+
+  // Helper function for shadow classes
+  const getShadowClass = (shadow?: string) => {
+    switch (shadow) {
+      case "sm": return "shadow-sm"
+      case "md": return "shadow-md"
+      case "lg": return "shadow-lg"
+      case "xl": return "shadow-xl"
+      default: return ""
+    }
+  }
+
+  // Helper function for alignment classes
+  const getAlignmentClass = (alignment?: string) => {
+    switch (alignment) {
+      case "center": return "mx-auto"
+      case "right": return "ml-auto"
+      default: return "" // left is default
+    }
   }
 
   return (
@@ -53,13 +107,26 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     </div>
                   )}
                   {section.type === "image" && section.src && (
-                    <div className="relative h-64 md:h-96">
-                      <Image
-                        src={section.src || "/placeholder.svg"}
-                        alt={section.alt || ""}
-                        fill
-                        className="object-cover rounded-lg"
-                      />
+                    <div className={cn(
+                      getMarginClass(section.margin),
+                      "w-full"
+                    )}>
+                      <div className={cn(
+                        "relative",
+                        getHeightClass(section.height, section.customHeight),
+                        getShadowClass(section.shadow),
+                        getAlignmentClass(section.alignment)
+                      )}>
+                        <Image
+                          src={section.src || "/placeholder.svg"}
+                          alt={section.alt || ""}
+                          fill
+                          className={cn(
+                            "rounded-lg",
+                            getObjectFitClass(section.objectFit)
+                          )}
+                        />
+                      </div>
                     </div>
                   )}
                 </div>
@@ -85,4 +152,3 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
     </>
   )
 }
-

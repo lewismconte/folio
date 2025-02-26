@@ -16,6 +16,13 @@ export interface ProjectSection {
   src?: string
   alt?: string
   fullWidth?: boolean
+  // New image formatting options
+  height?: "small" | "medium" | "large" | "custom"
+  customHeight?: string // For when height is "custom", e.g. "h-40 md:h-80"
+  objectFit?: "cover" | "contain" | "fill" | "none" 
+  alignment?: "left" | "center" | "right"
+  margin?: "none" | "small" | "medium" | "large"
+  shadow?: "none" | "sm" | "md" | "lg" | "xl"
 }
 
 export interface ProjectDetail {
@@ -32,4 +39,3 @@ export interface Project {
   sections: ProjectSection[]
   details: ProjectDetail[]
 }
-
