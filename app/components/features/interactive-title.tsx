@@ -2,7 +2,7 @@
 
 import type React from "react"
 import { useEffect, useRef, useState, useCallback, useMemo } from "react"
-import { motion } from "framer-motion"
+import { motion, AnimatePresence } from "framer-motion"
 import { Slider } from "@/components/ui/slider"
 
 // Constants
@@ -15,7 +15,7 @@ const REPULSION_STRENGTH = 0.9
 const MORPH_STRENGTH = 2
 const MORPH_SPEED = 0.01
 const RIGIDITY_STRENGTH = 0.4
-const TRANSITION_DURATION = 2
+const TRANSITION_DURATION = 1.2 // Slightly reduced for better responsiveness
 const ARRAY_CENTER_X = 0
 const ARRAY_CENTER_Y = 0
 const MAX_SHAPE_COUNT = 6
@@ -103,7 +103,26 @@ export default function InteractiveTitle() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const [shapeCount, setShapeCount] = useState(1)
   const [arrayDistance, setArrayDistance] = useState(25)
-  const [pathData, setPathData] = useState<Array<{ path: string; color: string }>>([])
+  const [pathData, setPathData] = useState<Array<{ 
+    path: string; 
+    color: string; 
+    id: string;
+    angle?: number;
+    radius?: number;
+    initialAngle?: number;
+    initialRadius?: number;
+    isNew?: boolean;
+    isCollapsing?: boolean;
+  }>>([])
+  
+  // Track previous values for smoother transitions
+  const prevSeedRef = useRef(seed)
+  const prevSizeRef = useRef(size)
+  const prevArrayDistanceRef = useRef(arrayDistance)
+  
+  // For throttling updates
+  const updateTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+  const isUpdatingRef = useRef(false)
 
   const containerRef = useRef<HTMLDivElement>(null)
   const animationRef = useRef<number>()
@@ -113,11 +132,73 @@ export default function InteractiveTitle() {
 
   const boundaryRadius = useMemo(() => calculateBoundaryRadius(size), [size])
 
+  // Throttled update function to prevent excessive recalculations
+  const throttledUpdate = useCallback((type: 'seed' | 'size' | 'distance') => {
+    if (isUpdatingRef.current) return
+    
+    isUpdatingRef.current = true
+    
+    // Clear any pending updates
+    if (updateTimeoutRef.current) {
+      clearTimeout(updateTimeoutRef.current)
+    }
+    
+    // Set a short timeout to allow for small pauses in slider movement
+    updateTimeoutRef.current = setTimeout(() => {
+      const needsSeedUpdate = type === 'seed' && prevSeedRef.current !== seed
+      const needsSizeUpdate = type === 'size' && prevSizeRef.current !== size
+      
+      if (needsSeedUpdate) {
+        prevSeedRef.current = seed
+        regenerateShapes()
+      } else if (needsSizeUpdate) {
+        prevSizeRef.current = size
+        regenerateShapes()
+      } else if (type === 'distance') {
+        prevArrayDistanceRef.current = arrayDistance
+        updatePathData()
+      }
+      
+      isUpdatingRef.current = false
+    }, 25) // Short delay for better responsiveness
+  }, [seed, size, arrayDistance])
+
+  // Store previous shape count for transition effects
+  const prevShapeCountRef = useRef<number>(1)
+  // Store previous path data for smooth transitions
+  const prevPathDataRef = useRef<Array<{ path: string; color: string; id: string; angle: number; radius: number }>>([])
+  
   const updatePathData = useCallback(() => {
+    // Keep track of existing paths for smooth transitions
+    const previousPathData = prevPathDataRef.current
+    const previousShapeCount = prevShapeCountRef.current
+    const isIncreasing = shapeCount > previousShapeCount
+    const isResetting = previousShapeCount === MAX_SHAPE_COUNT && shapeCount === 1
+    
+    prevShapeCountRef.current = shapeCount
+    
+    // Generate new paths
     const newPathData = shapesRef.current.slice(0, 3).flatMap((shape, shapeIndex) =>
       Array.from({ length: shapeCount }, (_, arrayIndex) => {
         const angle = (arrayIndex / shapeCount) * Math.PI * 2
         const arrayRadius = (arrayDistance / 100) * 200
+        
+        // For animation purpose, we need to know the start position
+        let startAngle = angle
+        let startRadius = arrayRadius
+        
+        // If we're increasing, new shapes come from the center
+        if (isIncreasing && arrayIndex >= previousShapeCount) {
+          startAngle = 0
+          startRadius = 0
+        }
+        
+        // If we're resetting to 1, all shapes collapse to the center
+        if (isResetting && arrayIndex === 0) {
+          startAngle = angle
+          startRadius = arrayRadius
+        }
+        
         const translatedPoints = shape.points.map((point) => {
           const rotatedX = point.x * Math.cos(angle) - point.y * Math.sin(angle)
           const rotatedY = point.x * Math.sin(angle) + point.y * Math.cos(angle)
@@ -126,27 +207,32 @@ export default function InteractiveTitle() {
             y: ARRAY_CENTER_Y + rotatedY + arrayRadius * Math.sin(angle),
           }
         })
+        
+        // Create a unique ID for this path that persists across updates
+        const pathId = `shape-${shapeIndex}-array-${arrayIndex}`
+        
         return {
           path: createSmoothPath(translatedPoints),
           color: shape.color,
+          id: pathId,
+          angle: angle,
+          radius: arrayRadius,
+          initialAngle: startAngle,
+          initialRadius: startRadius,
+          isNew: isIncreasing && arrayIndex >= previousShapeCount,
+          isCollapsing: isResetting && arrayIndex > 0
         }
       }),
     )
+    
+    // Store the new path data for next update
+    prevPathDataRef.current = newPathData
+    
     setPathData(newPathData)
   }, [shapeCount, arrayDistance])
 
-  useEffect(() => {
-    const random = seedRandom(baseSeed)
-    const baseHue = random() * 360
-    const colors = generateAnalogousColors(baseHue)
-    shapesRef.current = Array.from({ length: 6 }, (_, i) => ({
-      points: generatePoints(random, boundaryRadius),
-      color: colors[i % colors.length],
-    }))
-    updatePathData()
-  }, [baseSeed, boundaryRadius, updatePathData])
-
-  useEffect(() => {
+  // Function to smoothly regenerate shapes
+  const regenerateShapes = useCallback(() => {
     if (shapesRef.current.length === 0) return
 
     const random = seedRandom(baseSeed + seed)
@@ -164,6 +250,37 @@ export default function InteractiveTitle() {
     updatePathData()
   }, [seed, baseSeed, boundaryRadius, updatePathData])
 
+  // Initial setup
+  useEffect(() => {
+    const random = seedRandom(baseSeed)
+    const baseHue = random() * 360
+    const colors = generateAnalogousColors(baseHue)
+    shapesRef.current = Array.from({ length: 6 }, (_, i) => ({
+      points: generatePoints(random, boundaryRadius),
+      color: colors[i % colors.length],
+    }))
+    updatePathData()
+  }, [baseSeed, boundaryRadius, updatePathData])
+
+  // Handle slider value changes
+  useEffect(() => {
+    throttledUpdate('seed')
+  }, [seed, throttledUpdate])
+
+  useEffect(() => {
+    throttledUpdate('size')
+  }, [size, throttledUpdate])
+
+  useEffect(() => {
+    throttledUpdate('distance')
+  }, [arrayDistance, throttledUpdate])
+  
+  // Handle shape count changes
+  useEffect(() => {
+    // Force path data update when shape count changes
+    updatePathData()
+  }, [shapeCount, updatePathData])
+
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       if (containerRef.current) {
@@ -180,6 +297,7 @@ export default function InteractiveTitle() {
     return () => container?.removeEventListener("mousemove", handleMouseMove)
   }, [])
 
+  // Main animation loop
   useEffect(() => {
     const updateShapes = () => {
       timeRef.current += MORPH_SPEED
@@ -247,9 +365,31 @@ export default function InteractiveTitle() {
     }
   }, [mousePosition, updatePathData, boundaryRadius])
 
+  // Smoothly handle shape count changes with duplication effect
   const handleContainerClick = (event: React.MouseEvent<HTMLDivElement>) => {
     if (!(event.target as HTMLElement).closest(".slider-container")) {
-      setShapeCount((prevCount) => (prevCount % MAX_SHAPE_COUNT) + 1)
+      // First apply any pending transitions
+      if (transitionRef.current.active) {
+        shapesRef.current = shapesRef.current.map((shape) => ({
+          ...shape,
+          points: shape.targetPoints || shape.points,
+        }))
+        transitionRef.current.active = false
+      }
+      
+      // Update shape count with duplication effect
+      setShapeCount((prevCount) => {
+        const newCount = (prevCount % MAX_SHAPE_COUNT) + 1
+        
+        // The duplication effect happens in the updatePathData function
+        // which has access to both old and new counts
+        return newCount
+      })
+      
+      // Force an immediate update of the path data
+      requestAnimationFrame(() => {
+        updatePathData()
+      })
     }
   }
 
@@ -261,48 +401,105 @@ export default function InteractiveTitle() {
     >
       <div className="absolute inset-0 flex flex-col justify-center z-10">
         <div className="container mx-auto px-4 sm:px-6 md:px-8">
-          <motion.h1
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight ml-24 select-none"
+            className="ml-24 select-none"
           >
-            Portfolio.
-          </motion.h1>
+            <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight">
+              Lewis Conte
+            </h1>
+            <h2 className="text-white text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-2">
+              Portfolio.
+            </h2>
+          </motion.div>
         </div>
       </div>
 
       <svg width="100%" height="100%" viewBox="-200 -200 400 400" className="absolute inset-0">
-        {pathData.map((data, i) => (
-          <path key={i} d={data.path} fill={data.color} style={{ mixBlendMode: "screen" }} />
-        ))}
+        <AnimatePresence mode="sync">
+          {pathData.map((data) => {
+            // Calculate transform properties
+            const centerX = data.initialRadius ? Math.cos(data.initialAngle!) * data.initialRadius : 0
+            const centerY = data.initialRadius ? Math.sin(data.initialAngle!) * data.initialRadius : 0
+            const targetX = data.radius ? Math.cos(data.angle!) * data.radius : 0
+            const targetY = data.radius ? Math.sin(data.angle!) * data.radius : 0
+            
+            // Determine animation settings based on the shape's status
+            let initialProps = {}
+            let exitProps = {}
+            
+            if (data.isNew) {
+              // New shapes start from the center with 0 opacity
+              initialProps = { 
+                x: centerX - targetX, 
+                y: centerY - targetY, 
+                opacity: 0, 
+                scale: 0.2 
+              }
+            } else if (data.isCollapsing) {
+              // Collapsing shapes animate to the center
+              exitProps = { 
+                x: 0 - targetX, 
+                y: 0 - targetY, 
+                opacity: 0, 
+                scale: 0.2 
+              }
+            } else {
+              // Default animations
+              initialProps = { opacity: 0, scale: 0.8 }
+              exitProps = { opacity: 0, scale: 0.8 }
+            }
+            
+            return (
+              <motion.path
+                key={data.id}
+                d={data.path}
+                fill={data.color}
+                style={{ mixBlendMode: "screen" }}
+                initial={initialProps}
+                animate={{ x: 0, y: 0, opacity: 1, scale: 1 }}
+                exit={exitProps}
+                transition={{ 
+                  type: "spring", 
+                  stiffness: 200, 
+                  damping: 25,
+                  duration: 0.7
+                }}
+              />
+            )
+          })}
+        </AnimatePresence>
       </svg>
 
       <div className="absolute bottom-16 left-1/2 transform -translate-x-1/2 w-64 z-20 flex flex-col items-center gap-4">
-        <div className="slider-container flex flex-col items-center gap-4 w-full">
+        <div className="slider-container flex flex-col items-center gap-4 w-full backdrop-blur-sm bg-black/20 p-4 rounded-lg">
           {[
             { value: seed, setValue: setSeed, label: "Seed" },
             { value: size, setValue: setSize, label: "Size" },
             { value: arrayDistance, setValue: setArrayDistance, label: "Array Distance" },
           ].map(({ value, setValue, label }) => (
             <div key={label} className="flex items-center gap-4 w-full">
+              <span className="text-white text-xs opacity-60 w-24">{label}</span>
               <Slider
                 value={[value]}
                 onValueChange={(values) => setValue(values[0])}
                 min={0}
                 max={99}
                 step={1}
-                className="flex-grow opacity-20 hover:opacity-60 transition-opacity duration-300"
+                className="flex-grow opacity-60 hover:opacity-100 transition-opacity duration-300"
               />
-              <span className="text-white text-sm opacity-20 hover:opacity-60 transition-opacity duration-300 w-8 text-right">
+              <span className="text-white text-sm opacity-60 w-8 text-right">
                 {value.toString().padStart(2, "0")}
               </span>
             </div>
           ))}
         </div>
-        <span className="text-white text-sm opacity-20">Shape Count: {shapeCount} (Click to change)</span>
+        <span className="text-white text-sm opacity-40 bg-black/20 px-3 py-1 rounded-full backdrop-blur-sm">
+          Shape Count: {shapeCount} (Click to change)
+        </span>
       </div>
     </div>
   )
 }
-

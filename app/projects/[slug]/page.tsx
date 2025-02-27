@@ -37,11 +37,21 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   }
 
   // Helper function for height classes
-  const getHeightClass = (height?: string, customHeight?: string) => {
+  const getHeightClass = (height?: string, customHeight?: string, orientation?: string) => {
     if (height === "custom" && customHeight) {
       return customHeight
     }
     
+    // Apply different heights based on orientation
+    if (orientation === "portrait") {
+      switch (height) {
+        case "small": return "h-64 md:h-80" // Taller for portrait small
+        case "large": return "h-96 md:h-[40rem]" // Much taller for portrait large
+        default: return "h-80 md:h-[32rem]" // medium is default for portrait
+      }
+    }
+    
+    // Default height classes for landscape and undefined orientation
     switch (height) {
       case "small": return "h-40 md:h-64"
       case "large": return "h-96 md:h-[32rem]"
@@ -66,6 +76,36 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
       case "center": return "mx-auto"
       case "right": return "ml-auto"
       default: return "" // left is default
+    }
+  }
+
+  // Helper function for max-width classes
+  const getMaxWidthClass = (maxWidth?: string, customWidth?: string) => {
+    if (customWidth) {
+      return customWidth
+    }
+    
+    switch (maxWidth) {
+      case "xs": return "max-w-xs"
+      case "sm": return "max-w-sm"
+      case "md": return "max-w-md"
+      case "lg": return "max-w-lg"
+      case "xl": return "max-w-xl"
+      case "2xl": return "max-w-2xl"
+      case "3xl": return "max-w-3xl"
+      case "4xl": return "max-w-4xl"
+      case "5xl": return "max-w-5xl"
+      case "full": return "max-w-full"
+      default: return "" // No max-width by default
+    }
+  }
+
+  // Orientation-specific container classes
+  const getOrientationClass = (orientation?: string) => {
+    switch (orientation) {
+      case "portrait": return "portrait-image-container"
+      case "square": return "square-image-container"
+      default: return "" // landscape or undefined
     }
   }
 
@@ -113,9 +153,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                     )}>
                       <div className={cn(
                         "relative",
-                        getHeightClass(section.height, section.customHeight),
+                        getHeightClass(section.height, section.customHeight, section.orientation),
                         getShadowClass(section.shadow),
-                        getAlignmentClass(section.alignment)
+                        getAlignmentClass(section.alignment),
+                        getMaxWidthClass(section.maxWidth, section.customWidth),
+                        getOrientationClass(section.orientation)
                       )}>
                         <Image
                           src={section.src || "/placeholder.svg"}
@@ -123,7 +165,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                           fill
                           className={cn(
                             "rounded-lg",
-                            getObjectFitClass(section.objectFit)
+                            getObjectFitClass(section.objectFit),
+                            section.orientation === "portrait" ? "object-contain" : ""
                           )}
                         />
                       </div>

@@ -184,6 +184,25 @@ export const projects: Project[] = [
         shadow: "xl",
         margin: "medium"
       },
+      // Adding small exterior detail images
+      {
+        type: "image",
+        src: "/images/condell-exterior-detail-1.jpg",
+        alt: "Facade Detail",
+        height: "medium",
+        objectFit: "cover",
+        shadow: "md",
+        margin: "small"
+      },
+      {
+        type: "image",
+        src: "/images/condell-exterior-detail-2.jpg",
+        alt: "Entry Detail",
+        height: "medium",
+        objectFit: "cover",
+        shadow: "md",
+        margin: "small"
+      },
       {
         type: "text",
         content:
@@ -194,9 +213,27 @@ export const projects: Project[] = [
         type: "image",
         src: "/images/Condell_Int01.jpg",
         alt: "Condell Park Office Interior",
-        height: "large",
+        height: "medium",
         objectFit: "cover",
         shadow: "lg"
+      },
+      {
+        type: "image",
+        src: "/images/condell-interior-detail-2.jpg",
+        alt: "Interior Detail - Lighting",
+        height: "small",
+        objectFit: "cover",
+        shadow: "sm",
+        margin: "small"
+      },
+      {
+        type: "image",
+        src: "/images/condell-interior-detail-3.jpg",
+        alt: "Interior Detail - Furnishings",
+        height: "small",
+        objectFit: "cover",
+        shadow: "sm",
+        margin: "small"
       },
       {
         type: "text",
@@ -213,6 +250,16 @@ export const projects: Project[] = [
         shadow: "xl",
         margin: "medium"
       },
+      // Adding staircase detail views
+      {
+        type: "image",
+        src: "/images/condell-stair-detail-1.jpg",
+        alt: "Staircase Connection Detail",
+        height: "medium",
+        objectFit: "cover",
+        shadow: "md",
+        margin: "small"
+      },
       {
         type: "text",
         title: "Innovative Material Use",
@@ -220,20 +267,59 @@ export const projects: Project[] = [
           "The polycarbonate panel extension to the building houses the reception area and amenities on the ground level, while on Level 01, large, bright meeting and conference rooms are housed. The documentation shows the Danpalon polycarbonate panels in elevation, configured in a 'brick' tiling pattern. The window boxes featured here and on the front facade of the project are sized to be as wide as the Danpal panels to seamlessly fit into the design. This required some non-standard fixing methods, which were integrated into the design.",
         fullWidth: true,
       },
+      // Adding material closeups in a row
       {
         type: "image",
-        src: "/images/Condell_Interior_Wide.jpg",
-        alt: "Interior Workspace",
-        fullWidth: true,
+        src: "/images/condell-material-2.jpg",
+        alt: "Aluminum Paneling Detail",
         height: "large",
         objectFit: "cover",
-        shadow: "lg"
+        shadow: "sm",
+        margin: "small"
+      },
+      {
+        type: "image",
+        src: "/images/condell-material-3.jpg",
+        alt: "Window Box Detail",
+        height: "large",	
+        objectFit: "contain",
+        shadow: "sm",
+        margin: "small"
+      },
+      {
+        type: "image",
+        src: "/images/condell-material-1.jpg",
+        alt: "Polycarbonate Panel Detail",
+        height: "large",
+        objectFit: "cover",
+        shadow: "sm",
+        margin: "small",
+        fullWidth: true,
       },
       {
         type: "text",
         title: "Workspace Innovation",
         content:
           "Possibly the most unique part of the project is inside the warehouse: a large glass and aluminium box housing the main workspace. The proprietary aluminium and channel system were employed in various ways to create a modular walling and glazing system, which was then arrayed to create the office space. The raw milled aluminium finish of these boxes is endlessly interesting, with all of the factory imperfections showing in rainbow colours, which are unfortunately very difficult to capture with a camera. Additionally, the panels were employed in multiple pivot doors, arrayed to create a large, solid, and operable wall.",
+        margin: "medium"
+      },
+      // Adding medium sized workspace detail images
+      {
+        type: "image",
+        src: "/images/condell-workspace-1.jpg",
+        alt: "Modular Walling System",
+        height: "medium",
+        objectFit: "cover",
+        shadow: "lg",
+        margin: "medium"
+      },
+      {
+        type: "image",
+        src: "/images/condell-workspace-2.jpg",
+        alt: "Pivot Door System",
+        height: "large",
+        objectFit: "cover",
+        shadow: "lg",
         margin: "medium"
       },
     ],
@@ -327,8 +413,7 @@ export const projects: Project[] = [
         type: "image",
         src: "/images/content-integration.jpg",
         alt: "Content Integration with Interactive Elements",
-        fullWidth: true,
-        height: "medium",
+        height: "small",
         objectFit: "cover",
         shadow: "xl",
         margin: "medium"
@@ -524,87 +609,7 @@ export const projects: Project[] = [
       { label: "Focus", value: "Infrastructure & Ecological Restoration" },
     ],
   },
-  {
-    slug: "parametric-design-studies",
-    title: "Parametric Design Studies",
-    description: "Computational design experiments inspired by Indian architecture and geometric patterns, exploring the possibilities of parametric modeling.",
-    image: "/images/para02.png",
-    category: "Computational Design",
-    sections: [
-      {
-        type: "text",
-        title: "Discovering Parametric Design",
-        content:
-          "I first discovered Grasshopper when I was at UTS. My initial reaction was, 'Wow, this looks crazy - I don't get it.' I put it in my back pocket. After finishing uni I got a job -- then the pandemic hit and I lost it before I'd even started. I returned to landscaping, but, craving more stimulation, I began learning the tool in earnest.",
-        fullWidth: true,
-      },
-      {
-        type: "image",
-        src: "/images/parametric-pattern-01.jpg",
-        alt: "Parametric Pattern Study",
-        fullWidth: true,
-        height: "large",
-        objectFit: "cover",
-        shadow: "xl",
-        margin: "large"
-      },
-      {
-        type: "text",
-        title: "Pattern Inspirations",
-        content:
-          "I'm particularly fond of creating patterns, inspired by my trip to India around the time I left uni. Patterns were my entry point into Grasshopper. I studied a book by Hans Hinterreiter, an early geometric artist, and translated his methods into grasshopper scripts. These patterns were further incorporated into object design such as lamps and other applications.",
-        margin: "medium"
-      },
-      {
-        type: "image",
-        src: "/images/parametric-lamp.jpg",
-        alt: "Parametric Lamp Design",
-        height: "large",
-        objectFit: "cover",
-        shadow: "lg"
-      },
-      {
-        type: "text",
-        content:
-          "These experiments have taught me a great deal about parametric geometric design, lessons that have served me well in professional practice, particularly in projects like the Wentworth Hotel canopy where complex geometries needed to be precisely controlled and documented.",
-        margin: "small"
-      },
-      {
-        type: "image",
-        src: "/images/parametric-texture.jpg",
-        alt: "Parametric Texture Studies",
-        height: "medium",
-        objectFit: "contain",
-        shadow: "md",
-        margin: "medium"
-      },
-      {
-        type: "text",
-        title: "Personal Explorations",
-        content:
-          "This work showcases several experiments I've done in my own time over the years. These include texture studies as well as an experiment turning my partner's handwriting into a jewelry piece using a grasshopper script. I've also experimented with physics plugins, testing catenary arches and combining them with panelization tools to create interesting forms.",
-        fullWidth: true,
-      },
-      {
-        type: "image",
-        src: "/images/parametric-jewelry.jpg",
-        alt: "Parametric Jewelry Design",
-        fullWidth: true,
-        height: "large",
-        objectFit: "cover",
-        shadow: "lg",
-        margin: "medium"
-      },
-    ],
-    details: [
-      { label: "Focus", value: "Pattern Generation & Form Finding" },
-      { label: "Tools", value: "Grasshopper, Rhino 3D" },
-      { label: "Years", value: "2019-Present" },
-      { label: "Influences", value: "Indian Architecture, Hans Hinterreiter" },
-      { label: "Applications", value: "Object Design, Architectural Elements, Jewelry" },
-    ],
-  },
-  {
+   {
     slug: "technical-documentation",
     title: "Technical Documentation",
     description: "Detailed architectural drawings for Project Remediate and various other projects, showcasing technical precision and documentation skills.",
@@ -686,40 +691,109 @@ export const projects: Project[] = [
         type: "text",
         title: "Photographic Approach",
         content:
-          "Many of the photos here were captured at architectural monuments in North India during my travels, with the exception of the photo on the right, which was taken at the Alhambra in Granada. I shoot with an SLR camera, using a 50mm lens and a red light filter.",
+          "Many of the photos here were captured at architectural monuments in North India during my travels. I shoot with an SLR camera, using a 50mm lens and a red light filter.",
         fullWidth: true,
       },
+      // Hero landscape image
       {
         type: "image",
         src: "/images/photo-india-fort.jpg",
         alt: "Red Fort, North India",
-        fullWidth: true,
         height: "large",
-        objectFit: "cover",
+        objectFit: "contain",
         shadow: "xl",
         margin: "large"
+      },
+      // Two portrait images side by side
+      {
+        type: "image",
+        src: "/images/photo-red-fort-arches.jpg",
+        alt: "Red Fort Arches - Portrait View",
+        orientation: "portrait",
+        height: "large",
+        customHeight: "h-80 md:h-[36rem] lg:h-[42rem]",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium",
+        maxWidth: "lg"
+      },
+      {
+        type: "image",
+        src: "/images/photo-palace-interior.jpg",
+        alt: "Palace Interior Detail - Portrait View",
+        orientation: "portrait",
+        height: "large",
+        customHeight: "h-80 md:h-[36rem] lg:h-[42rem]",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium",
+        maxWidth: "lg"
+      },
+      {
+        type: "image",
+        src: "/images/taj-tower.jpg",
+        alt: "Sikri Tower - Portrait View",
+        orientation: "portrait",
+        height: "medium",
+        customHeight: "h-72 md:h-[32rem] lg:h-[36rem]",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "small",
+        maxWidth: "sm"
       },
       {
         type: "text",
         content:
-          "When photographing, I avoid the classic magazine shots. Instead, I focus on the fundamentals of framing and lighting, waiting for something to catch my eye - an interesting angle, unique lighting, or an atmospheric haze.",
-        margin: "medium"
+          "When photographing, I avoid the classic magazine shots. Instead, I focus on the fundamentals of framing and lighting, waiting for something to catch my eye - an interesting angle, unique lighting, or an atmospheric haze. The vertical format allows me to capture the soaring heights of architectural elements, drawing the viewer's eye upward just as these structures do in person.",
+        margin: "medium",
+        fullWidth: true
       },
+      // Three images in a row - landscape, portrait, landscape
       {
         type: "image",
         src: "/images/photo-fatehpur.jpg",
         alt: "Fatehpur Sikri",
-        height: "large",
+        height: "medium",
         objectFit: "cover",
-        shadow: "lg"
+        shadow: "lg",
+        margin: "small"      
+      },
+      {
+        type: "image",
+        src: "/images/photo-sikri-tower.jpg",
+        alt: "Sikri Tower - Portrait View",
+        orientation: "portrait",
+        height: "medium",
+        customHeight: "h-72 md:h-[32rem] lg:h-[36rem]",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "small",
+        maxWidth: "sm"
       },
       {
         type: "text",
         title: "Personal Connection",
         content:
-          "My favorite photo, shown at the bottom, was taken in a state forest near Batemans Bay. Though I've yet to surpass it, I keep striving to improve. The other images were taken at Red Fort and Fatehpur Sikri, North India. I had studied Fatehpur Sikri as a precedent in my capstone studio at UTS, so visiting it was a profound experience. The red filter on my camera made the granite glow beautifully. All images are unedited, apart from cropping.",
-        margin: "small"
+          "My favorite photo, shown below, was taken in a state forest near Batemans Bay. Though I've yet to surpass it, I keep striving to improve. The other images were taken at Red Fort and Fatehpur Sikri, North India. I had studied Fatehpur Sikri as a precedent in my capstone studio at UTS, so visiting it was a profound experience. The red filter on my camera made the granite glow beautifully. All images are unedited, apart from cropping.",
+        margin: "medium",
+        fullWidth: true
       },
+      // A striking full-width portrait image
+      {
+        type: "image",
+        src: "/images/photo-batemans-portrait.jpg",
+        alt: "Batemans Bay State Forest - Vertical Perspective",
+        orientation: "portrait",
+        fullWidth: true,
+        height: "large",
+        customHeight: "h-96 md:h-[44rem] lg:h-[52rem]",
+        objectFit: "contain",
+        shadow: "xl",
+        margin: "large",
+        maxWidth: "3xl",
+        alignment: "center"
+      },
+      // Side-by-side landscape and portrait
       {
         type: "image",
         src: "/images/photo-batemans.jpg",
@@ -731,13 +805,31 @@ export const projects: Project[] = [
       },
       {
         type: "image",
+        src: "/images/photo-forest-path.jpg",
+        alt: "Forest Path - Vertical View",
+        orientation: "square",
+        height: "large",
+        customHeight: "h-80 md:h-[38rem] lg:h-[44rem]",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium",
+        maxWidth: "md"
+      },
+      // Finishing with a dramatic full-width landscape
+      {
+        type: "image",
         src: "/images/photo-alhambra.jpg",
         alt: "Alhambra, Granada",
         fullWidth: true,
         height: "large",
         objectFit: "cover",
-        shadow: "xl",
         margin: "large"
+      },
+      {
+        type: "text",
+        content: "Architecture photography captures more than just buildings—it documents human creativity, cultural history, and the relationship between space and light. By mixing portrait and landscape orientations, I aim to provide a more complete viewing experience that emphasizes both the horizontal expansiveness and vertical grandeur of these remarkable structures.",
+        fullWidth: true,
+        margin: "medium"
       },
     ],
     details: [
@@ -745,7 +837,8 @@ export const projects: Project[] = [
       { label: "Year", value: "2019-2021" },
       { label: "Equipment", value: "SLR Camera, 50mm Lens, Red Light Filter" },
       { label: "Style", value: "Unedited, Focus on Framing and Lighting" },
-      { label: "Subject Focus", value: "Historical Monuments, Natural Landscapes" },
+      { label: "Orientations", value: "Landscape and Portrait" },
+      { label: "Subject Focus", value: "Historical Monuments, Natural Landscapes, Vertical Elements" },
     ],
   },
   {
@@ -762,17 +855,7 @@ export const projects: Project[] = [
           "I maintain a sketching practice, finding it both rewarding and helpful in processing the visual world. Most sketches here were created on an e-ink tablet. The botanical and still life sketches are particularly interesting, as they challenge me to capture organic shapes - a departure from the rectilinear nature of architectural drawing.",
         fullWidth: true,
       },
-      {
-        type: "image",
-        src: "/images/sketch-pumpkin.jpg",
-        alt: "Butternut Pumpkin Sketch",
-        fullWidth: true,
-        height: "medium",
-        objectFit: "contain",
-        shadow: "md",
-        margin: "large"
-      },
-      {
+            {
         type: "text",
         content:
           "A wide range of subjects interests me in sketching. Recently, I attempted portrait sketching after my partner laughed at a poor attempt I made of her face. I still have a long way to go in that area!",
