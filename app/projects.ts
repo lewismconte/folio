@@ -583,24 +583,7 @@ export const projects: Project[] = [
           "The project dotted numerous hills with towers and inbuilt weirs across the landscape, forming the foundation of a larger bush regeneration project. The area is surrounded by new housing developments. Our goal was to capture the toxic runoff from the stormwater systems of the built area, clean it, and return it to the Nepean River.",
         margin: "medium"
       },
-      {
-        type: "image",
-        src: "/images/richmond-regen-overview.jpg",
-        alt: "Richmond Regen Overview",
-        fullWidth: true,
-        height: "medium",
-        objectFit: "cover",
-        shadow: "xl",
-        margin: "medium"
-      },
-      {
-        type: "text",
-        title: "Public Amenity",
-        content:
-          "We envisioned the project as a parkland with a large reservoir for swimming and winding bushwalks, allowing people to interact with both the architecture and landscape. This creates a dual-purpose infrastructure that serves both ecological restoration and community recreation.",
-        margin: "small"
-      },
-    ],
+      ],
     details: [
       { label: "Location", value: "Richmond, Western Sydney, Australia" },
       { label: "Year", value: "2018" },
@@ -855,20 +838,6 @@ export const projects: Project[] = [
           "I maintain a sketching practice, finding it both rewarding and helpful in processing the visual world. Most sketches here were created on an e-ink tablet. The botanical and still life sketches are particularly interesting, as they challenge me to capture organic shapes - a departure from the rectilinear nature of architectural drawing.",
         fullWidth: true,
       },
-            {
-        type: "text",
-        content:
-          "A wide range of subjects interests me in sketching. Recently, I attempted portrait sketching after my partner laughed at a poor attempt I made of her face. I still have a long way to go in that area!",
-        margin: "medium"
-      },
-      {
-        type: "image",
-        src: "/images/sketch-portrait.jpg",
-        alt: "Portrait Sketch",
-        height: "medium",
-        objectFit: "contain",
-        shadow: "md"
-      },
       {
         type: "text",
         title: "Pattern Studies",
@@ -888,9 +857,9 @@ export const projects: Project[] = [
       },
       {
         type: "text",
-        title: "Technical Drawing",
+        title: "Botanical Drawing",
         content:
-          "The butternut pumpkins in the sketch above were ones I planted and nurtured myself. I sketched them while studying shading techniques. The technical drawing sketches were completed during lockdown. They're plans for small furniture pieces I made from scrap wood at my Nonno's house. This ideation process brought me joy, and the resulting bedside table and lamp served me well.",
+          "Botanical sketching offers me a counterpoint to architectural precision. Through studies of plants and organic forms, I explore the fluid irregularities of nature that contrast with the rectilinear geometries of buildings. These drawings, created primarily on my e-ink tablet, sharpen my observational skills while introducing natural patterns and rhythms into my design vocabulary—enriching my architectural work with organic sensibility.",
         margin: "small"
       },
       {
