@@ -420,7 +420,7 @@ export const projects: Project[] = [
     title: "H&E Suite: PyRevit Tools & Knowledge Management",
     description: "Development of custom PyRevit tools and an internal knowledge wiki to streamline workflows, preserve institutional knowledge, and enhance collaboration.",
     image: "/images/pyrevit-tools.jpg",
-    category: "Computational Design",
+    category: "BIM",
     sections: [
       {
         type: "text",
