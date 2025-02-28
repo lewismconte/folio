@@ -1,19 +1,32 @@
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { ChevronLeft } from "lucide-react"
+import { ChevronLeft, Mail } from "lucide-react"
 import Header from "@/app/components/layout/header"
 import PageContainer from "@/app/components/layout/page-container"
 import { projects } from "@/app/projects"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
+import { Lightbox } from "@/app/components/ui/lightbox"
 
 export default function ProjectPage({ params }: { params: { slug: string } }) {
   const project = projects.find((p) => p.slug === params.slug)
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxSrc, setLightboxSrc] = useState("")
+  const [lightboxAlt, setLightboxAlt] = useState("")
 
   if (!project) {
     notFound()
+  }
+  
+  const openLightbox = (src: string, alt: string) => {
+    setLightboxSrc(src)
+    setLightboxAlt(alt)
+    setLightboxOpen(true)
   }
 
   // Helper function for object fit classes
@@ -112,8 +125,8 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
   return (
     <>
       <Header />
-      <PageContainer>
-        <Button asChild variant="ghost" className="mb-8">
+      <PageContainer className="pt-16">
+        <Button asChild variant="ghost" className="mb-4">
           <Link href="/">
             <ChevronLeft className="mr-2 h-4 w-4" />
             Back to Home
@@ -121,7 +134,11 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
         </Button>
 
         <div className="bg-white shadow-xl rounded-lg overflow-hidden">
-          <div className="relative h-96 md:h-[70vh]">
+          <div 
+            className="relative h-96 md:h-[70vh] cursor-pointer transition-all hover:opacity-90" 
+            onClick={() => openLightbox(project.image || "/placeholder.svg", project.title)}
+            aria-label="Click to enlarge image"
+          >
             <Image
               src={project.image || "/placeholder.svg"}
               alt={project.title}
@@ -151,14 +168,18 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
                       getMarginClass(section.margin),
                       "w-full"
                     )}>
-                      <div className={cn(
-                        "relative",
-                        getHeightClass(section.height, section.customHeight, section.orientation),
-                        getShadowClass(section.shadow),
-                        getAlignmentClass(section.alignment),
-                        getMaxWidthClass(section.maxWidth, section.customWidth),
-                        getOrientationClass(section.orientation)
-                      )}>
+                      <div 
+                        className={cn(
+                          "relative cursor-pointer transition-all hover:opacity-90",
+                          getHeightClass(section.height, section.customHeight, section.orientation),
+                          getShadowClass(section.shadow),
+                          getAlignmentClass(section.alignment),
+                          getMaxWidthClass(section.maxWidth, section.customWidth),
+                          getOrientationClass(section.orientation)
+                        )}
+                        onClick={() => openLightbox(section.src || "/placeholder.svg", section.alt || "")}
+                        aria-label="Click to enlarge image"
+                      >
                         <Image
                           src={section.src || "/placeholder.svg"}
                           alt={section.alt || ""}
@@ -191,6 +212,34 @@ export default function ProjectPage({ params }: { params: { slug: string } }) {
             )}
           </div>
         </div>
+
+        {/* Contact Section */}
+        <div className="mt-16 p-8 bg-gray-50 rounded-lg shadow-md">
+          <h2 className="text-3xl font-bold mb-6">Get in Touch</h2>
+          <p className="text-lg mb-6">
+            Interested in discussing this project or have questions about my work? I'd love to hear from you.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button asChild>
+              <Link href="mailto:lewismconte@gmail.com">
+                <Mail className="mr-2 h-4 w-4" /> Email Me
+              </Link>
+            </Button>
+            <Button asChild variant="outline">
+              <Link href="/#contact">
+                View Contact Information
+              </Link>
+            </Button>
+          </div>
+        </div>
+
+        {/* Lightbox */}
+        <Lightbox 
+          src={lightboxSrc} 
+          alt={lightboxAlt} 
+          isOpen={lightboxOpen} 
+          onClose={() => setLightboxOpen(false)} 
+        />
       </PageContainer>
     </>
   )

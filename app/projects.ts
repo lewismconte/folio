@@ -217,25 +217,7 @@ export const projects: Project[] = [
         objectFit: "cover",
         shadow: "lg"
       },
-      {
-        type: "image",
-        src: "/images/condell-interior-detail-2.jpg",
-        alt: "Interior Detail - Lighting",
-        height: "small",
-        objectFit: "cover",
-        shadow: "sm",
-        margin: "small"
-      },
-      {
-        type: "image",
-        src: "/images/condell-interior-detail-3.jpg",
-        alt: "Interior Detail - Furnishings",
-        height: "small",
-        objectFit: "cover",
-        shadow: "sm",
-        margin: "small"
-      },
-      {
+     {
         type: "text",
         title: "Distinctive Design Elements",
         content:
@@ -265,7 +247,6 @@ export const projects: Project[] = [
         title: "Innovative Material Use",
         content:
           "The polycarbonate panel extension to the building houses the reception area and amenities on the ground level, while on Level 01, large, bright meeting and conference rooms are housed. The documentation shows the Danpalon polycarbonate panels in elevation, configured in a 'brick' tiling pattern. The window boxes featured here and on the front facade of the project are sized to be as wide as the Danpal panels to seamlessly fit into the design. This required some non-standard fixing methods, which were integrated into the design.",
-        fullWidth: true,
       },
       // Adding material closeups in a row
       {
@@ -453,7 +434,7 @@ export const projects: Project[] = [
         src: "/images/pyrevit-interface.jpg",
         alt: "H&E Suite PyRevit Interface",
         fullWidth: true,
-        height: "medium",
+        height: "small",
         objectFit: "contain",
         shadow: "lg",
         margin: "large"
@@ -554,19 +535,50 @@ export const projects: Project[] = [
       },
       {
         type: "image",
-        src: "/images/richmond-regen-aerial.jpg",
-        alt: "Aerial View of Richmond Regen",
-        fullWidth: true,
+        src: "/images/RichmondVer1.jpg",
+        alt: "Master View",
+        orientation: "portrait",
         height: "large",
-        objectFit: "cover",
-        shadow: "xl",
-        margin: "large"
+        customHeight: "h-80 md:h-[36rem] lg:h-[42rem]",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium",
+        maxWidth: "lg"
+      },{
+        type: "image",
+        src: "/images/RichmondVer2.jpg",
+        alt: "Section View",
+        orientation: "portrait",
+        height: "large",
+        customHeight: "h-80 md:h-[36rem] lg:h-[42rem]",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium",
+        maxWidth: "lg"
+      },
+      {
+        type: "image",
+        src: "/images/Richmond_Hori1.jpg",
+        alt: "Hillside Pump Tower",
+        height: "medium",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "medium"
+      },
+      {
+        type: "image",
+        src: "/images/Richmond_Hori2.jpg",
+        alt: "Weir and Pump Tower",
+        height: "medium",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "medium"
       },
       {
         type: "text",
         title: "Environmental Vision",
         content:
-          "We reimagined the water treatment plant as a place that could systematically restore water cleanliness through a series of pump towers and rammed earth weirs. These structures would use gravity and plants to filter the water.",
+          "We reimagined the water treatment plant as a place that could systematically restore water cleanliness through a series of pump towers and rammed earth weirs. These structures would use gravity and plants to filter the water.The project dotted numerous hills with towers and inbuilt weirs across the landscape, forming the foundation of a larger bush regeneration project. The area is surrounded by new housing developments. Our goal was to capture the toxic runoff from the stormwater systems of the built area, clean it, and return it to the Nepean River.",
         margin: "medium"
       },
       {
@@ -577,13 +589,7 @@ export const projects: Project[] = [
         objectFit: "cover",
         shadow: "lg"
       },
-      {
-        type: "text",
-        content:
-          "The project dotted numerous hills with towers and inbuilt weirs across the landscape, forming the foundation of a larger bush regeneration project. The area is surrounded by new housing developments. Our goal was to capture the toxic runoff from the stormwater systems of the built area, clean it, and return it to the Nepean River.",
-        margin: "medium"
-      },
-      ],
+   ],
     details: [
       { label: "Location", value: "Richmond, Western Sydney, Australia" },
       { label: "Year", value: "2018" },
@@ -938,6 +944,16 @@ export const projects: Project[] = [
         content:
           "The attention to detail in these models demonstrates not only technical skill but also an understanding of how materials interact and how structural elements come together. The experimentation with different materials and techniques reflects a creative approach to model making that extends beyond simple representation to become an exploratory design tool.",
         fullWidth: true,
+      },
+      {
+        type: "image",
+        src: "/images/final-model-large.jpg",
+        alt: "Large Scale Model",
+        fullWidth: true,
+        height: "small",
+        objectFit: "cover",
+        shadow: "xl",
+        margin: "large"
       },
     ],
     details: [
