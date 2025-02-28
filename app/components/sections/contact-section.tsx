@@ -2,10 +2,14 @@ import Link from "next/link"
 import { Mail, Github, Linkedin } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
-export default function ContactSection() {
+interface ContactSectionProps {
+  className?: string
+}
+
+export default function ContactSection({ className = "" }: ContactSectionProps) {
   return (
-    <section id="contact" className="py-24 sm:py-32">
-      <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-8">Get in Touch</h2>
+    <section id="contact" className={className}>
+      <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-6">Get in Touch</h2>
       <p className="mb-4">Interested in collaborating or just want to chat? Let's connect:</p>
       <div className="flex gap-4">
         <Button variant="outline" asChild>
@@ -27,4 +31,3 @@ export default function ContactSection() {
     </section>
   )
 }
-

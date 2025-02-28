@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { ProjectCard } from "./project-card"
+import { ProjectCard } from "@/app/components/project-card"
 import { type Project, type ProjectCategory, projectCategories } from "@/app/data/types"
 
 interface ProjectGridProps {
@@ -42,4 +42,3 @@ export function ProjectGrid({ projects }: ProjectGridProps) {
     </div>
   )
 }
-

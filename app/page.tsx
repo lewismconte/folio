@@ -14,16 +14,15 @@ export default function Home() {
       <HeroSection />
       <main className="flex-1">
         <PageContainer>
-          <section id="projects" className="py-24 sm:py-32">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-8">Projects</h2>
+          <section id="projects" className="py-12 sm:py-16">
+            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl mb-6">Projects</h2>
             <ProjectGrid projects={projects} />
           </section>
-          <AboutSection />
-          <ContactSection />
+          <AboutSection className="py-12 sm:py-16" />
+          <ContactSection className="py-12 sm:py-16" />
         </PageContainer>
       </main>
       <Footer />
     </div>
   )
 }
-
