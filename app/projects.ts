@@ -459,17 +459,8 @@ export const projects: Project[] = [
         title: "Measurable Impact",
         content:
           "The implementation of the H&E Suite had a tangible impact on our workflow efficiency. By automating repetitive tasks, we saved our team valuable time that could be redirected toward design development and problem-solving. The tools also ensured greater consistency across projects and reduced the likelihood of human error in repetitive tasks.",
-        margin: "small"
-      },
-      {
-        type: "image",
-        src: "/images/workflow-comparison.jpg",
-        alt: "Before and After Workflow Comparison",
+        margin: "small",
         fullWidth: true,
-        height: "medium",
-        objectFit: "cover",
-        shadow: "lg",
-        margin: "medium"
       },
       {
         type: "text",
