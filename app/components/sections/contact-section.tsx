@@ -23,7 +23,7 @@ export default function ContactSection({ className = "" }: ContactSectionProps) 
           </Link>
         </Button>
         <Button variant="outline" asChild>
-          <Link href="https://linkedin.com/lewis-conte-514aa7174" target="_blank" rel="noopener noreferrer">
+          <Link href="https://www.linkedin.com/in/lewis-conte-514aa7174" target="_blank" rel="noopener noreferrer">
             <Linkedin className="mr-2 h-4 w-4" /> LinkedIn
           </Link>
         </Button>
