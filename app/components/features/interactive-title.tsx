@@ -380,11 +380,11 @@ export default function InteractiveTitle() {
       // Update shape count with duplication effect
       setShapeCount((prevCount) => {
         const newCount = (prevCount % MAX_SHAPE_COUNT) + 1
-        
-        // The duplication effect happens in the updatePathData function
-        // which has access to both old and new counts
         return newCount
       })
+      
+      // Keep the current seed value when regenerating shapes
+      setSeed(prevSeedRef.current)
       
       // Force an immediate update of the path data
       requestAnimationFrame(() => {
