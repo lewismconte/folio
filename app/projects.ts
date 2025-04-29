@@ -2,6 +2,95 @@ import type { Project } from "./data/types"
 
 export const projects: Project[] = [
   {
+    slug: "commercial-rural-kitchen",
+    title: "Sketch for Commercial Rural Kitchen",
+    description: "Conceptual massing sketches for a commercial kitchen facility in a rural setting, presenting clean plans and elevations from multiple perspectives.",
+    image: "/images/kitchen-hero.jpg",
+    category: "Built Projects & Professional Work",
+    sections: [
+      {
+        type: "text",
+        title: "Project Overview",
+        content:
+          "This project involved creating conceptual sketches for a commercial kitchen facility in a rural setting. The drawings were initially developed as a massing exercise to explore spatial relationships and volumetric form, then refined and cleaned up for client presentation.",
+        fullWidth: true,
+      },
+      {
+        type: "image",
+        src: "/images/kitchen-planwide.jpg",
+        alt: "Commercial Rural Kitchen - Main View",
+        fullWidth: true,
+        height: "small",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "medium"
+      },
+      {
+        type: "text",
+        title: "Design Approach",
+        content:
+          "The sketches focus on a straightforward, functional layout that addresses the specific requirements of a commercial kitchen while harmonizing with the rural context. The design prioritizes operational efficiency while maintaining aesthetic appeal appropriate for the setting.",
+        margin: "medium"
+      },
+      {
+        type: "image",
+        src: "/images/kitchen-plan.jpg",
+        alt: "Commercial Kitchen Floor Plan",
+        height: "medium",
+        objectFit: "contain",
+        shadow: "lg",
+        margin: "medium"
+      },
+      {
+        type: "text",
+        content:
+          "The floor plan illustrates the efficient workflow design, with clear zones for food preparation, cooking, storage, and service. Special attention was paid to circulation patterns, equipment placement, and compliance with commercial kitchen regulations.",
+        margin: "small"
+      },
+      {
+        type: "image",
+        src: "/images/kitchen-elevation-1.jpg",
+        alt: "Kitchen Elevation - Front View",
+        height: "medium",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "medium"
+      },
+      {
+        type: "image",
+        src: "/images/kitchen-elevation-2.jpg",
+        alt: "Kitchen Elevation - Side View",
+        height: "medium",
+        objectFit: "contain",
+        shadow: "md",
+        margin: "medium"
+      },
+      {
+        type: "image",
+        src: "/images/kitchen-elevation-3.jpg",
+        alt: "Kitchen Elevation - Rear View",
+        height: "medium",
+        objectFit: "contain", 
+        shadow: "md",
+        margin: "medium"
+      },
+      {
+        type: "text",
+        title: "Presentation Strategy",
+        content:
+          "The sketches were deliberately kept clean and straightforward to communicate the essential architectural ideas without unnecessary embellishment. This approach allowed the client to focus on the fundamental aspects of the design - spatial organization, volumetric relationships, and overall form - without being distracted by decorative details that would be developed in later stages.",
+        fullWidth: true,
+      }
+    ],
+    details: [
+      { label: "Project Type", value: "Commercial Kitchen" },
+      { label: "Location", value: "Rural Setting" },
+      { label: "Year", value: "2024" },
+      { label: "Stage", value: "Conceptual Design" },
+      { label: "Scope", value: "Massing Exercise, Plan and Elevations" },
+    ],
+  },
+  {
     slug: "wentworth-hotel-mezzanine",
     title: "Sofitel Wentworth Hotel Level 5 Canopy",
     description: "A sophisticated renovation featuring a complex radiating copper canopy with an aircraft wing-like form that protects guests from the elements.",
